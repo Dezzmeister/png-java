@@ -39,7 +39,7 @@ public class GrayscaleConverter implements ColorSpaceConverter {
 			long bitIndex = 0;
 			final int pixIndex = line * width;
 			
-			for (int i = pixIndex; i < pixIndex + width; i++) {
+			for (int i = pixIndex; i < (line * width) + width; i++) {
 				final int pixel = convertToBitDepth(pixels[pixIndex], bitdepth);
 				bitIndex = bits.put(bitIndex, pixel, bitdepth);
 			}

@@ -28,4 +28,23 @@ public class PNGData {
 		bitDepth = _bitDepth;
 		scanlines = _scanlines;
 	}
+	
+	public final String debugInfo() {
+		final StringBuilder sb = new StringBuilder();
+		
+		sb.append("Color type: " + colorType.name() + "\n");
+		sb.append("Bit depth: " + bitDepth + "\n");
+		sb.append("========Scanlines========");
+		
+		for (int line = 0; line < scanlines.length; line++) {
+			final byte[] scanline = scanlines[line];
+			sb.append("\n");
+			
+			for (int i = 0; i < scanline.length; i++) {
+				sb.append(Integer.toHexString(Byte.toUnsignedInt(scanline[i])) + " ");
+			}
+		}
+		
+		return sb.toString();
+	}
 }

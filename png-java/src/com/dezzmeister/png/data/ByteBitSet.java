@@ -79,7 +79,8 @@ public class ByteBitSet {
 			final long shifted;
 			
 			if (valueExtraBits < availableSpace) {
-				shifted = ((long) masked) << (availableSpace - valueExtraBits);
+				shifted = ((long) masked) << (availableSpace - valueExtraBits - 8);
+				valueByteIndex--;
 			} else if (valueExtraBits > availableSpace) {
 				shifted = (((long) masked) << 8) >>> (valueExtraBits - availableSpace);
 				valueByteIndex++;
@@ -106,10 +107,15 @@ public class ByteBitSet {
 	private void putLong(final int byteIndex, final long value, final int valueStartByte) {
 		final byte[] bytes = longToBytes(value);
 		int arrayIndex = byteIndex;
+		int startIndex = 7 - valueStartByte;
 		
-		for (int i = (7 - valueStartByte); i < 8; i++) {
+		for (int i = startIndex; i < 8; i++) {
 			array[arrayIndex] |= bytes[i];
 			arrayIndex++;
+		}
+		
+		for (int i = 0; i < 8; i++) {
+			
 		}
 	}
 	

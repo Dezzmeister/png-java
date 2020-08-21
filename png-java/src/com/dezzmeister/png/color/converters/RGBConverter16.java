@@ -5,6 +5,11 @@ import com.dezzmeister.png.chunks.meta.PNGData;
 import com.dezzmeister.png.color.ColorSpaceConverter;
 import com.dezzmeister.png.data.ByteBitSet;
 
+/**
+ * Converts an array of RGB pixels with 16-bit samples to a PNG format.
+ * 
+ * @author Joseph Desmond
+ */
 public class RGBConverter16 implements ColorSpaceConverter {
 
 	@Override
@@ -17,8 +22,8 @@ public class RGBConverter16 implements ColorSpaceConverter {
 			long bitIndex = 0;
 			final int pixIndex = line * width * 3;
 			
-			for (int i = pixIndex; i < (line * width * 3) + width; i++) {
-				bitIndex = bits.put(bitIndex, pixels[pixIndex], bitdepth);
+			for (int i = pixIndex; i < ((line + 1) * width * 3); i++) {
+				bitIndex = bits.put(bitIndex, pixels[i], bitdepth);
 			}
 			
 			scanlines[line] = bits.getArray();

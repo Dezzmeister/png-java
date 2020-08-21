@@ -7,7 +7,13 @@ import com.dezzmeister.png.data.ByteBitSet;
 
 /**
  * Converts 16-bit grayscale images to unfiltered PNG scanlines. If possible, a lower
- * bit depth is used (instead of the default 16 bits).
+ * bit depth is used (instead of the default 16 bits). The {@link #ALIGNMENTS} table defines
+ * what values can be used to reduce the bit depth. If every 16-bit grayscale pixel is a multiple of one
+ * of the values in the table (besides 1), the bit depth can be reduced. For example: to achieve a bit depth of 1,
+ * your samples can either be 0 or 65535. To achieve a bit depth of 2, they can either be 0 or some multiple of
+ * 21845. The samples must be <b>EXACT</b> multiples to force the converter to reduce the bit depth. In the interest
+ * of preserving every bit of pixel data, the converter will not reduce the bit depth if samples are "close enough"
+ * to a multiple.
  * 
  * @author Joe Desmond
  * @see #ALIGNMENTS
@@ -40,7 +46,7 @@ public class GrayscaleConverter implements ColorSpaceConverter {
 			final int pixIndex = line * width;
 			
 			for (int i = pixIndex; i < (line * width) + width; i++) {
-				final int pixel = convertToBitDepth(pixels[pixIndex], bitdepth);
+				final int pixel = convertToBitDepth(pixels[i], bitdepth);
 				bitIndex = bits.put(bitIndex, pixel, bitdepth);
 			}
 			
@@ -62,7 +68,7 @@ public class GrayscaleConverter implements ColorSpaceConverter {
 			return pixel;
 		}
 		
-		return pixel / ALIGNMENTS[depth];
+		return pixel / ALIGNMENTS[depth - 1];
 	}
 	
 	/**

@@ -6,10 +6,30 @@ package com.dezzmeister.png.chunks.meta;
  * @author Joe Desmond
  */
 public enum ColorType {
+	
+	/**
+	 * Each pixel is made of one sample: a grayscale value
+	 */
 	GRAYSCALE((byte) 0, new byte[] {1, 2, 4, 8, 16}),
+	
+	/**
+	 * Each pixel is made of three samples: red, green, blue (in that order)
+	 */
 	RGB((byte) 2, new byte[] {8, 16}),
+	
+	/**
+	 * Each pixel is made of one sample: an index into a color palette
+	 */
 	PALETTE((byte) 3, new byte[] {1, 2, 4, 8}),
+	
+	/**
+	 * Each pixel is made of two samples: a grayscale value and an alpha (in that order)
+	 */
 	GRAYSCALE_ALPHA((byte) 4, new byte[] {8, 16}),
+	
+	/**
+	 * Each pixel is made of four samples: red, green, blue, alpha (in that order)
+	 */
 	RGB_ALPHA((byte) 6, new byte[] {8, 16});
 	
 	/**

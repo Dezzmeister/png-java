@@ -1,6 +1,7 @@
 package com.dezzmeister.png.color;
 
 import com.dezzmeister.png.chunks.meta.PNGData;
+import com.dezzmeister.png.color.converters.ARGBConverter16;
 import com.dezzmeister.png.color.converters.GrayscaleConverter;
 import com.dezzmeister.png.color.converters.RGBConverter16;
 
@@ -18,24 +19,31 @@ public enum ColorFormat {
 	 * 16-bit grayscale. Each input int is a single 16 bit sample (the most significant
 	 * 16 bits are wasted). If the samples can be represented in less than 16 bits,
 	 * the converter will transform the samples to reduce the size of the PNG.
+	 * 
+	 * @see GrayscaleConverter
 	 */
 	GRAYSCALE(new GrayscaleConverter()),
 	
 	/**
 	 * 16-bit RGB. Each input int is a single 16 bit sample (the most significant
 	 * 16 bits are wasted). The converter does not try to optimize the bit depth or
-	 * use a palette instead. If the user specifies 16 bits of precision, the PNG encoder
-	 * will respect that.
+	 * use a palette instead.
 	 * 
 	 * TODO: Optimize the converter to use a palette if possible
 	 */
 	RGB_16(new RGBConverter16()),
-	ARGB_16,
-	RGBA_16,
+	
+	/**
+	 * 16-bit ARGB. Each input int is a single 16 bit sample (the most significant
+	 * 16 bits are wasted). The converter does not try to optimize the bit depth or
+	 * use a palette instead.
+	 */
+	ARGB_16(new ARGBConverter16()),
+	RGBA_16(new RGBAConverter16()),
 	
 	/**
 	 * 8-bit RGB. Each input int contains all three samples (the most significant
-	 * 16 bits are wasted).
+	 * 8 bits are wasted).
 	 * 
 	 * TODO: Optimize the converter to use a palette if possible
 	 */

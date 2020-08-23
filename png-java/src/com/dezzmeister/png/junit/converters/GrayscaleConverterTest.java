@@ -1,9 +1,9 @@
 package com.dezzmeister.png.junit.converters;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import com.dezzmeister.png.chunks.meta.ColorType;
 import com.dezzmeister.png.chunks.meta.PNGData;
@@ -14,7 +14,7 @@ public class GrayscaleConverterTest {
 	private GrayscaleConverter converter = new GrayscaleConverter();
 
 	@Test
-	void test() {
+	public void test() {
 		final int[] pixels = {0, 65535, 21845, 21845, 43690, 65535, 43690, 0, 0, 0, 65535, 21845};
 		final int width = 3;
 		final int height = 4;
@@ -24,7 +24,7 @@ public class GrayscaleConverterTest {
 		System.out.println("Converter should infer bit depth of 2: " + data.bitDepth);
 		assertEquals(data.bitDepth, 2);
 		
-		System.out.println("Converter should encode PNG color type GRAYSCALE: " + data.colorType.name());
+		System.out.println("Converter should encode PNG color type " + ColorType.GRAYSCALE.name() + ": " + data.colorType.name());
 		assertEquals(data.colorType, ColorType.GRAYSCALE);
 		
 		System.out.println("PNG scanlines should be encoded properly");

@@ -35,7 +35,7 @@ public class ByteBitSet {
 	 */
 	public ByteBitSet(final long numBits) {
 		int numBytes = (int)(numBits >>> 3);
-		int remainder = (int)(numBits - (numBytes << 3));
+		int remainder = (int)(numBits & 0x7);
 		if (remainder != 0) {
 			numBytes++;
 		}
@@ -67,7 +67,7 @@ public class ByteBitSet {
 	 */
 	public long put(final long bitIndex, final int value, final int numBits) {
 		final int byteIndex = (int)(bitIndex >>> 3); // Divide by 8
-		final int localBitIndex = (int)(bitIndex - (byteIndex << 3)); // Find the remainder
+		final int localBitIndex = (int)(bitIndex & 0x7); // Find the remainder
 		final int masked = value & BITMASKS[numBits];
 		
 		if (numBits <= (8 - localBitIndex)) {

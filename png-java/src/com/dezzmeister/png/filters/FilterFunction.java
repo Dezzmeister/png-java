@@ -14,7 +14,7 @@ public interface FilterFunction {
 	 * may not be used, depending on the filtering algorithm. If this argument is null, 
 	 * the filter function will treat it as zeroes (for example, when filtering the first line).
 	 * 
-	 * @param prevLine previous scanline
+	 * @param prevLine previous scanline (unfiltered)
 	 * @param thisLine scanline being filtered
 	 * @param bytesPerPixel number of bytes in one pixel, rounded up to 1 if fractional
 	 * @return filtered scanline

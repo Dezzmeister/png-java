@@ -4,7 +4,7 @@ import com.dezzmeister.png.filters.FilterFunction;
 
 /**
  * The Sub filter, which only uses values in the current scanline. Both of these functions ignore
- * <code>prevLine</code> and <code>nextLine</code>.
+ * <code>prevLine</code>.
  * 
  * @author Joe Desmond
  */

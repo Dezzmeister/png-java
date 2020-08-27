@@ -54,8 +54,8 @@ public class CRC {
 	/**
 	 * Computes a 32-bit CRC with the given data
 	 * 
-	 * @param bytes
-	 * @return
+	 * @param bytes input data
+	 * @return 32-bit CRC checksum
 	 */
 	public static final long crc(final byte[] bytes) {
 		return updateCRC(0xFFFFFFFFL, bytes) ^ 0xFFFFFFFFL;

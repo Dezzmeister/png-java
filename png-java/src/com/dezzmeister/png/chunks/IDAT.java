@@ -10,8 +10,21 @@ import com.dezzmeister.png.data.Conversions;
 import com.dezzmeister.png.filters.Filter;
 import com.dezzmeister.png.functions.CRC;
 
+/**
+ * IDAT chunk encoding/decoding class.
+ * 
+ * @author Joe Desmond
+ */
 public class IDAT {
 	
+	/**
+	 * Encodes an IDAT chunk and returns the entire chunk (includes 'IDAT' header, length, compressed
+	 * data, and CRC).
+	 * 
+	 * @param imageData image data to encode
+	 * @param filter filtering strategy
+	 * @return encoded IDAT chunk
+	 */
 	public final byte[] encode(final PNGData imageData, final Filter filter) {
 		final byte[][] scanlines = imageData.scanlines;
 		final int width = scanlines[0].length;
@@ -58,6 +71,16 @@ public class IDAT {
 		return out.array();
 	}
 	
+	/**
+	 * Filters the given scanline. If a specific filter is specified, it will be used here. Otherwise,
+	 * if the filter is dynamic, the best filter is chosen using the minimum sum of absolute differences heuristic.
+	 * 
+	 * @param prevLine previous scanline
+	 * @param line current scanline
+	 * @param imageData image data
+	 * @param filter filter type
+	 * @return filtered scanline
+	 */
 	private byte[] filter(final byte[] prevLine, final byte[] line, final PNGData imageData, final Filter filter) {
 		final int bytesPerPixel = imageData.colorType.getBytesPerPixel(imageData.bitDepth);
 		

@@ -34,7 +34,7 @@ public class RGBConverter8 implements ColorSpaceConverter {
 			scanlines[line] = samples;
 		}
 		
-		return new PNGData(ColorType.RGB, bitdepth, scanlines);
+		return new PNGData(ColorType.RGB, bitdepth, scanlines, width, height);
 	}
 
 }

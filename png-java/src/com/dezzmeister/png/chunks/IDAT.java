@@ -25,7 +25,7 @@ public class IDAT {
 	 * @param filter filtering strategy
 	 * @return encoded IDAT chunk
 	 */
-	public final byte[] encode(final PNGData imageData, final Filter filter) {
+	public static byte[] encode(final PNGData imageData, final Filter filter) {
 		final byte[][] scanlines = imageData.scanlines;
 		final int width = scanlines[0].length;
 		final int height = scanlines.length;
@@ -57,7 +57,7 @@ public class IDAT {
 		}
 		
 		final byte[] rawData = baos.toByteArray();
-		final int length = rawData.length;
+		final int length = rawData.length - 4;
 		final int crc = (int) CRC.crc(rawData);
 		
 		final ByteBuffer out = ByteBuffer.allocate(rawData.length + 8);
@@ -81,7 +81,7 @@ public class IDAT {
 	 * @param filter filter type
 	 * @return filtered scanline
 	 */
-	private byte[] filter(final byte[] prevLine, final byte[] line, final PNGData imageData, final Filter filter) {
+	private static byte[] filter(final byte[] prevLine, final byte[] line, final PNGData imageData, final Filter filter) {
 		final int bytesPerPixel = imageData.colorType.getBytesPerPixel(imageData.bitDepth);
 		
 		if (filter != Filter.DYNAMIC) {
@@ -129,7 +129,7 @@ public class IDAT {
 		return rawData;
 	}
 	
-	private class FilterCandidate {
+	private static class FilterCandidate {
 		final byte[] filtered;
 		final int sum;
 		final Filter filter;
@@ -141,7 +141,7 @@ public class IDAT {
 		}
 	}
 	
-	private final FilterCandidate min(final FilterCandidate[] cands) {
+	private static FilterCandidate min(final FilterCandidate[] cands) {
 		FilterCandidate min = cands[0];
 		
 		for (int i = 1; i < cands.length; i++) {
@@ -153,7 +153,7 @@ public class IDAT {
 		return min;
 	}
 	
-	private final int sum(final byte[] items) {
+	private static int sum(final byte[] items) {
 		int sum = 0;
 		
 		for (int i = 0; i < items.length; i++) {

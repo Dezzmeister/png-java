@@ -55,7 +55,7 @@ public class ARGBConverter16 implements ColorSpaceConverter {
 			scanlines[line] = samples;
 		}
 		
-		return new PNGData(ColorType.RGB_ALPHA, (byte) bitdepth, scanlines);
+		return new PNGData(ColorType.RGB_ALPHA, (byte) bitdepth, scanlines, width, height);
 	}
 	
 	private void putInt16(final int value, final byte[] bytes, final int index) {

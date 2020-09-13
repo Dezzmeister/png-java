@@ -23,10 +23,16 @@ public class PNGData {
 	 */
 	public final byte[][] scanlines;
 	
-	public PNGData(final ColorType _colorType, final byte _bitDepth, final byte[][] _scanlines) {
+	public final int width;
+	
+	public final int height;
+	
+	public PNGData(final ColorType _colorType, final byte _bitDepth, final byte[][] _scanlines, final int _width, final int _height) {
 		colorType = _colorType;
 		bitDepth = _bitDepth;
 		scanlines = _scanlines;
+		width = _width;
+		height = _height;
 	}
 	
 	public final String debugInfo() {

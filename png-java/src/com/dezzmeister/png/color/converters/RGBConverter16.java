@@ -29,6 +29,6 @@ public class RGBConverter16 implements ColorSpaceConverter {
 			scanlines[line] = bits.getArray();
 		}
 		
-		return new PNGData(ColorType.RGB, (byte) bitdepth, scanlines);
+		return new PNGData(ColorType.RGB, (byte) bitdepth, scanlines, width, height);
 	}
 }

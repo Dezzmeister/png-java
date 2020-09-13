@@ -53,7 +53,7 @@ public class GrayscaleConverter implements ColorSpaceConverter {
 			scanlines[line] = bits.getArray();
 		}
 		
-		return new PNGData(ColorType.GRAYSCALE, (byte) bitdepth, scanlines);
+		return new PNGData(ColorType.GRAYSCALE, (byte) bitdepth, scanlines, width, height);
 	}
 	
 	/**

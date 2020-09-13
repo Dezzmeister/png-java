@@ -1,7 +1,7 @@
 # png-java
 Simple PNG Encoder in Java
 
-*STILL IN DEVELOPMENT*
+**STILL IN DEVELOPMENT**
 
 
 This library is written in pure Java from scratch, with no dependencies from java.awt (or any other package not available on Android). It's very small (49 KB), and it
